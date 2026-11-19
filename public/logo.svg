@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" fill="none">
+  <!-- Cup body -->
+  <rect x="10" y="22" width="30" height="24" rx="4" fill="#C47F17"/>
+  <!-- Cup handle -->
+  <path d="M40 28 Q52 28 52 36 Q52 44 40 44" stroke="#C47F17" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Steam lines -->
+  <path d="M18 18 Q20 13 18 8" stroke="#8047F8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M25 16 Q27 11 25 6" stroke="#8047F8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M32 18 Q34 13 32 8" stroke="#8047F8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <!-- Coffee surface -->
+  <ellipse cx="25" cy="22" rx="15" ry="4" fill="#DBAC2C"/>
+  <!-- Delivery icon (motorcycle dot) -->
+  <circle cx="49" cy="10" r="8" fill="#4B2995"/>
+  <text x="49" y="14" text-anchor="middle" font-size="10" fill="white">🛵</text>
+</svg>

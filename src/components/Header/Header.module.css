@@ -1,0 +1,100 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.content {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.logoImg {
+  height: 2.5rem;
+  width: auto;
+}
+
+.logoText {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--yellow-dark);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 6px;
+  background-color: var(--purple-light);
+  color: var(--purple-dark);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.themeToggle:hover {
+  background-color: var(--purple);
+  color: var(--white);
+}
+
+.cartButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 6px;
+  background-color: var(--yellow-light);
+  color: var(--yellow-dark);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cartButton:hover {
+  background-color: var(--yellow);
+  color: var(--white);
+}
+
+.cartBadge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 4px;
+  border-radius: 50%;
+  background-color: var(--yellow-dark);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+}

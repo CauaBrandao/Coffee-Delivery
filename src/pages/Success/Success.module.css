@@ -1,0 +1,116 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 5rem 0;
+}
+
+.content {
+  width: 100%;
+  max-width: 1160px;
+}
+
+.header {
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--yellow-dark);
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--base-subtitle);
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 6px 36px;
+  border: 1px solid transparent;
+  background-image:
+    linear-gradient(var(--card-bg), var(--card-bg)),
+    linear-gradient(to bottom right, var(--yellow), var(--purple));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  padding: 2.5rem;
+  flex: 1;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  color: var(--base-text);
+  font-family: 'Roboto', sans-serif;
+}
+
+.infoItem strong {
+  display: block;
+  color: var(--base-text);
+}
+
+.infoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.infoIcon.purple { background-color: var(--purple); }
+.infoIcon.yellow { background-color: var(--yellow); }
+.infoIcon.yellowDark { background-color: var(--yellow-dark); }
+
+.illustration {
+  width: 30rem;
+  max-width: 100%;
+}
+
+.backBtn {
+  padding: 0.75rem 2rem;
+  background-color: var(--yellow-dark);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  transition: background-color 0.2s;
+}
+
+.backBtn:hover {
+  background-color: var(--yellow);
+}
+
+@media (max-width: 768px) {
+  .details {
+    flex-direction: column;
+  }
+
+  .illustration {
+    width: 100%;
+    max-width: 20rem;
+    margin: 0 auto;
+    display: block;
+  }
+}

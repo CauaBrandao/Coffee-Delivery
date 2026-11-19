@@ -1,0 +1,110 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--card-bg);
+  border-radius: 6px 36px;
+  padding: 0 1.25rem 1.25rem;
+  text-align: center;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.image {
+  width: 7.5rem;
+  height: 7.5rem;
+  object-fit: contain;
+  margin-top: -1.5rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  justify-content: center;
+  margin: 0.75rem 0 1rem;
+}
+
+.tag {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--yellow-dark);
+  background-color: var(--yellow-light);
+  padding: 4px 8px;
+  border-radius: 100px;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.name {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--base-subtitle);
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: var(--base-label);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+  gap: 1.5rem;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.priceLabel {
+  font-size: 0.875rem;
+  color: var(--base-text);
+  font-family: 'Roboto', sans-serif;
+}
+
+.priceValue {
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-family: 'Baloo 2', cursive;
+  color: var(--base-text);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 6px;
+  background-color: var(--purple-dark);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+}
+
+.addButton:hover {
+  background-color: var(--purple);
+}

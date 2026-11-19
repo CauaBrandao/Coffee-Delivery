@@ -1,0 +1,92 @@
+/* ─── Variables ───────────────────────────────────────── */
+:root {
+  /* Yellow */
+  --yellow-dark: #C47F17;
+  --yellow: #DBAC2C;
+  --yellow-light: #F1E9C9;
+
+  /* Purple */
+  --purple-dark: #4B2995;
+  --purple: #8047F8;
+  --purple-light: #EBE5F9;
+
+  /* Base */
+  --base-title: #272221;
+  --base-subtitle: #403937;
+  --base-text: #574F4D;
+  --base-label: #8D8686;
+  --base-hover: #D7D5D5;
+  --base-button: #E6E5E5;
+  --base-input: #EDEDED;
+  --base-card: #F3F2F2;
+
+  /* Semantic */
+  --white: #FFFFFF;
+  --background: #FAFAFA;
+  --card-bg: #F3F2F2;
+  --hero-bg: #FAFAFA;
+  --input-bg: #EDEDED;
+  --input-border: #E6E5E5;
+  --border: #E6E5E5;
+  --shadow: rgba(0,0,0,0.08);
+  --error: #E8BAAB;
+}
+
+/* ─── Dark Theme ──────────────────────────────────────── */
+[data-theme="dark"] {
+  --base-title: #F3F2F2;
+  --base-subtitle: #EDEDED;
+  --base-text: #D7D5D5;
+  --base-label: #8D8686;
+  --base-hover: #403937;
+  --base-button: #2C2827;
+  --base-input: #1A1A1A;
+  --base-card: #272221;
+
+  --white: #FFFFFF;
+  --background: #1E1E1E;
+  --card-bg: #272221;
+  --hero-bg: #1A1816;
+  --input-bg: #2C2827;
+  --input-border: #403937;
+  --border: #403937;
+  --shadow: rgba(0,0,0,0.3);
+  --error: #E8BAAB;
+
+  --yellow-light: #3D2F00;
+  --purple-light: #2A1A5E;
+}
+
+/* ─── Reset & base ────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background);
+  color: var(--base-text);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
