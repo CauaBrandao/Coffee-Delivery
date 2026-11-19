@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 380" width="480" height="380" fill="none">
+  <defs>
+    <radialGradient id="heroGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F1E9C9" stop-opacity="0.8" />
+      <stop offset="60%" stop-color="#DBAC2C" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#FAFAFA" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="cupBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E6E5E5" />
+      <stop offset="40%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#D7D5D5" />
+    </linearGradient>
+    <linearGradient id="cupSleeve" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#272221" />
+      <stop offset="50%" stop-color="#403937" />
+      <stop offset="100%" stop-color="#272221" />
+    </linearGradient>
+    <filter id="heroShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#272221" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Background Warm Aura -->
+  <circle cx="250" cy="190" r="160" fill="url(#heroGlow)" />
+
+  <!-- Coffee Beans Scattered -->
+  <!-- Bean 1 -->
+  <g transform="translate(140, 260) rotate(-25)">
+    <ellipse cx="14" cy="10" rx="14" ry="10" fill="#403937" />
+    <path d="M 4 10 Q 14 6 24 10" stroke="#DBAC2C" stroke-width="2" fill="none" />
+  </g>
+  <!-- Bean 2 -->
+  <g transform="translate(180, 290) rotate(15)">
+    <ellipse cx="12" cy="8" rx="12" ry="8" fill="#C47F17" />
+    <path d="M 3 8 Q 12 5 21 8" stroke="#F1E9C9" stroke-width="1.8" fill="none" />
+  </g>
+  <!-- Bean 3 -->
+  <g transform="translate(320, 270) rotate(40)">
+    <ellipse cx="15" cy="11" rx="15" ry="11" fill="#403937" />
+    <path d="M 5 11 Q 15 8 25 11" stroke="#DBAC2C" stroke-width="2.2" fill="none" />
+  </g>
+  <!-- Bean 4 -->
+  <g transform="translate(350, 240) rotate(-35)">
+    <ellipse cx="11" cy="7" rx="11" ry="7" fill="#8047F8" opacity="0.8" />
+    <path d="M 3 7 Q 11 4 19 7" stroke="#EBE5F9" stroke-width="1.5" fill="none" />
+  </g>
+
+  <!-- Cup Group (slanted slightly) -->
+  <g transform="rotate(7 240 190)" filter="url(#heroShadow)">
+    <!-- Cup Base & Body -->
+    <path d="M 195 90 L 285 90 L 265 260 L 215 260 Z" fill="url(#cupBody)" />
+
+    <!-- Cup Lid -->
+    <rect x="188" y="74" width="104" height="18" rx="6" fill="#272221" />
+    <rect x="202" y="66" width="76" height="10" rx="3" fill="#403937" />
+    <rect x="232" y="62" width="16" height="6" rx="2" fill="#272221" />
+
+    <!-- Black Sleeve with Logo -->
+    <path d="M 200 135 L 280 135 L 273 215 L 207 215 Z" fill="url(#cupSleeve)" />
+
+    <!-- Brand icon & text on sleeve -->
+    <circle cx="240" cy="168" r="14" fill="#C47F17" />
+    <text x="240" y="173" font-family="'Baloo 2', cursive" font-weight="bold" font-size="12" fill="#FFFFFF" text-anchor="middle">CD</text>
+    <text x="240" y="196" font-family="'Roboto', sans-serif" font-size="8" font-weight="bold" fill="#F1E9C9" letter-spacing="1.5" text-anchor="middle">COFFEE</text>
+  </g>
+</svg>

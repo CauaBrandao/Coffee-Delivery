@@ -13,7 +13,7 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.content}>
         <Link to="/" className={styles.logo}>
-          <img src="/logo.svg" alt="Coffee Delivery" className={styles.logoImg} />
+          <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="Coffee Delivery" className={styles.logoImg} />
           <span className={styles.logoText}>Coffee Delivery</span>
         </Link>
 

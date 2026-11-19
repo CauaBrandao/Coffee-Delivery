@@ -41,14 +41,29 @@ export function Checkout() {
   const navigate = useNavigate()
   const { cartItems, cartTotal, deliveryFee, updateQuantity, removeFromCart, checkout } = useCart()
 
+  const isDemo =
+    window.location.href.includes('demo=1') ||
+    window.location.href.includes('checkout.html')
+
   const {
     register,
     handleSubmit,
     watch,
-    setValue,
     formState: { errors },
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
+    defaultValues: isDemo
+      ? {
+          cep: '90010-000',
+          street: 'Rua das Flores',
+          number: '123',
+          complement: 'Apto 402',
+          neighborhood: 'Centro',
+          city: 'Porto Alegre',
+          state: 'RS',
+          payment: 'credit',
+        }
+      : undefined,
   })
 
   const selectedPayment = watch('payment')

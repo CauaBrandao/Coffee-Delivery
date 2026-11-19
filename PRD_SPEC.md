@@ -65,28 +65,28 @@ O **Coffee Delivery** é uma aplicação web de e-commerce para uma cafeteria fi
 ## 5. Critérios de Aceite
 
 ### CA01 — Catálogo
-- [ ] 14 cafés exibidos com nome, descrição, tags, preço e imagem
-- [ ] Tags visuais coloridas por categoria
-- [ ] Seletor de quantidade funcional (mín. 1, máx. 99)
-- [ ] Botão de adicionar ao carrinho funcional
+- [x] 14 cafés exibidos com nome, descrição, tags, preço e imagem
+- [x] Tags visuais coloridas por categoria
+- [x] Seletor de quantidade funcional (mín. 1, máx. 99)
+- [x] Botão de adicionar ao carrinho funcional
 
 ### CA02 — Carrinho
-- [ ] Badge no ícone atualiza em tempo real
-- [ ] Itens persistem ao recarregar a página
-- [ ] Remover item e alterar quantidade no checkout funcionam
+- [x] Badge no ícone atualiza em tempo real
+- [x] Itens persistem ao recarregar a página
+- [x] Remover item e alterar quantidade no checkout funcionam
 
 ### CA03 — Checkout
-- [ ] Formulário valida todos os campos obrigatórios
-- [ ] Mensagens de erro descritivas por campo
-- [ ] Seleção de pagamento visual e funcional
+- [x] Formulário valida todos os campos obrigatórios
+- [x] Mensagens de erro descritivas por campo
+- [x] Seleção de pagamento visual e funcional
 
 ### CA04 — Confirmação
-- [ ] Exibe endereço, forma de pagamento e previsão de entrega
-- [ ] Botão de novo pedido retorna ao catálogo
+- [x] Exibe endereço, forma de pagamento e previsão de entrega
+- [x] Botão de novo pedido retorna ao catálogo
 
 ### CA05 — Temas
-- [ ] Alternância Light/Dark funcional via botão no header
-- [ ] Tema persistido entre sessões
+- [x] Alternância Light/Dark funcional via botão no header
+- [x] Tema persistido entre sessões
 
 ### CA06 — Responsividade
-- [ ] Layout funcional em 320px, 768px e 1440px
+- [x] Layout funcional em 320px, 768px e 1440px

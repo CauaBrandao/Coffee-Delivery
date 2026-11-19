@@ -26,11 +26,60 @@ export function CartProvider({ children }: { children: ReactNode }) {
     lastOrder: null,
   }, (initial) => {
     try {
+      const isDemo =
+        window.location.href.includes('demo=1') ||
+        window.location.href.includes('checkout.html') ||
+        window.location.href.includes('success.html')
       const stored = localStorage.getItem(STORAGE_KEY)
       const storedOrder = localStorage.getItem(ORDER_KEY)
+
+      let items = stored ? JSON.parse(stored) : initial.cartItems
+      let order = storedOrder ? JSON.parse(storedOrder) : initial.lastOrder
+
+      if (isDemo && items.length === 0) {
+        items = [
+          {
+            id: '1',
+            name: 'Expresso Tradicional',
+            description: 'O tradicional café feito com água quente e grãos moídos',
+            tags: ['Tradicional'],
+            price: 9.90,
+            image: '/images/coffees/expresso.svg',
+            quantity: 2,
+          },
+          {
+            id: '6',
+            name: 'Latte',
+            description: 'Uma dose de café expresso com o dobro de leite e espuma cremosa',
+            tags: ['Tradicional', 'Com Leite'],
+            price: 9.90,
+            image: '/images/coffees/latte.svg',
+            quantity: 1,
+          },
+        ]
+      }
+
+      if (isDemo && !order) {
+        order = {
+          address: {
+            cep: '90010-000',
+            street: 'Rua das Flores',
+            number: '123',
+            complement: 'Apto 402',
+            neighborhood: 'Centro',
+            city: 'Porto Alegre',
+            state: 'RS',
+          },
+          payment: 'credit',
+          items,
+          total: 29.70,
+          deliveryFee: 3.50,
+        }
+      }
+
       return {
-        cartItems: stored ? JSON.parse(stored) : initial.cartItems,
-        lastOrder: storedOrder ? JSON.parse(storedOrder) : initial.lastOrder,
+        cartItems: items,
+        lastOrder: order,
       }
     } catch {
       return initial

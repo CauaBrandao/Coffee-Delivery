@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="saucerShad" cx="50%" cy="50%" r="50%">
+      <stop offset="60%" stop-color="#E6E5E5" />
+      <stop offset="100%" stop-color="#D7D5D5" />
+    </radialGradient>
+    <linearGradient id="cupGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F3F2F2" />
+    </linearGradient>
+    <filter id="drop" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <!-- Saucer shadow & plate -->
+  <ellipse cx="60" cy="62" rx="54" ry="46" fill="#000000" opacity="0.08" />
+  <ellipse cx="60" cy="60" rx="52" ry="44" fill="url(#saucerShad)" />
+  <ellipse cx="60" cy="60" rx="42" ry="34" fill="#FFFFFF" />
+  <ellipse cx="60" cy="60" rx="36" ry="28" fill="#F3F2F2" />
+
+  <!-- Cup outer rim -->
+  <ellipse cx="60" cy="58" rx="34" ry="26" fill="url(#cupGrad)" stroke="#E6E5E5" stroke-width="1.5" filter="url(#drop)" />
+
+  <!-- Coffee liquid -->
+  <ellipse cx="60" cy="58" rx="30" ry="22" fill="#1A0C05" />
+
+  <!-- Crema / Foam -->
+  <ellipse cx="60" cy="58" rx="27" ry="19" fill="#4A2510" opacity="0.9" />
+
+  <!-- Detail layer (latte art, ice cubes, chocolate, cinnamon, etc.) -->
+  
+      <!-- Cardamom & spice specks -->
+      <circle cx="57" cy="53" r="1.5" fill="#C47F17" />
+      <circle cx="64" cy="55" r="1.5" fill="#8047F8" opacity="0.7" />
+      <circle cx="54" cy="61" r="1.2" fill="#C47F17" />
+      <circle cx="62" cy="63" r="1.4" fill="#C47F17" />
+      <ellipse cx="60" cy="58" rx="8" ry="5" fill="#331A0D" opacity="0.8" />
+    
+
+  <!-- Cup reflection shine -->
+  <path d="M 36 54 A 26 18 0 0 1 54 40" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.5" />
+</svg>

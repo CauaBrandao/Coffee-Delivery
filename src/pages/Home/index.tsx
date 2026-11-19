@@ -45,7 +45,7 @@ export function Home() {
             </ul>
           </div>
 
-          <img src="/hero-coffee.png" alt="Copo de café" className={styles.heroImage} />
+          <img src={`${import.meta.env.BASE_URL}hero-coffee.svg`} alt="Copo de café" className={styles.heroImage} />
         </div>
       </section>
 

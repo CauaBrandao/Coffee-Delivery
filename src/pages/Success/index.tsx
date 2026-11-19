@@ -71,7 +71,7 @@ export function Success() {
           </div>
 
           <img
-            src="/success-delivery.svg"
+            src={`${import.meta.env.BASE_URL}success-delivery.svg`}
             alt="Entregador de bicicleta"
             className={styles.illustration}
           />

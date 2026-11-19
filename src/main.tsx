@@ -1,19 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, HashRouter } from 'react-router-dom'
 import { CartProvider } from '@/contexts/CartContext'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import App from './App'
 import '@/styles/global.css'
 
+const Router = window.location.protocol === 'file:' ? HashRouter : BrowserRouter
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <Router>
       <ThemeProvider>
         <CartProvider>
           <App />
         </CartProvider>
       </ThemeProvider>
-    </BrowserRouter>
+    </Router>
   </React.StrictMode>,
 )

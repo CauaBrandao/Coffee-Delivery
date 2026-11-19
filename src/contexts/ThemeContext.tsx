@@ -11,6 +11,9 @@ const ThemeContext = createContext<ThemeContextType>({} as ThemeContextType)
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
+    if (document.documentElement.getAttribute('data-theme') === 'dark') return 'dark'
+    if (window.location.href.includes('dark')) return 'dark'
+    if (window.location.href.includes('light')) return 'light'
     const stored = localStorage.getItem('coffee-delivery:theme')
     if (stored === 'dark' || stored === 'light') return stored
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'

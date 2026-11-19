@@ -1,17 +1,17 @@
 <div align="center">
 
-<img src="public/logo.svg" alt="Coffee Delivery Logo" width="80" />
+<img src="public/logo.svg" alt="Coffee Delivery Logo" width="90" />
 
 # ☕ Coffee Delivery
 
-**E-commerce de cafeteria fictícia — Projeto Final SPA**
+**E-commerce de cafeteria fictícia — Projeto Final da Disciplina de Single Page Application (SPA)**
 
-[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://react.dev)
+[![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=white)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.4-3178C6?logo=typescript&logoColor=white)](https://typescriptlang.org)
-[![Vite](https://img.shields.io/badge/Vite-5.2-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
+[![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-[🌐 Demo ao vivo](#) · [📋 Figma](https://www.figma.com/design/yGPNTA0Yczb183EikXGIiA/) · [📄 Documentação](#documentação)
+[🎨 Protótipo no Figma](https://www.figma.com/design/yGPNTA0Yczb183EikXGIiA/Coffee-Delivery-%E2%80%A2-Projeto-Final-React?node-id=2-1297) · [📄 Especificações](#-documentação-obrigatória) · [📱 Evidências / Screenshots](#-evidências-das-telas-principais)
 
 </div>
 
@@ -19,138 +19,183 @@
 
 ## 📋 Sobre o Projeto
 
-O **Coffee Delivery** é uma aplicação web de e-commerce para uma cafeteria fictícia, desenvolvida como projeto final da disciplina de **Single Page Application (SPA)**. A aplicação permite ao usuário navegar pelo catálogo de cafés, gerenciar um carrinho de compras, informar endereço e forma de pagamento e finalizar um pedido com confirmação visual.
+O **Coffee Delivery** é uma aplicação web completa de e-commerce desenvolvida como projeto final avaliativo da disciplina de **Single Page Application (SPA)**. A aplicação segue fielmente o design system e fluxo de usuário projetados no Figma, oferecendo uma experiência moderna de compra de café.
+
+O usuário pode explorar um catálogo com 14 tipos de cafés especiais, ajustar quantidades, gerenciar o carrinho com persistência local, preencher dados de entrega com validação em tempo real, escolher a forma de pagamento e receber a confirmação visual do pedido.
 
 ---
 
-## ✨ Funcionalidades
+## ✨ Funcionalidades Principais
 
-- 🛒 **Catálogo de cafés** — 14 tipos com nome, descrição, tags e preço
-- ➕ **Carrinho de compras** — adicionar, remover e ajustar quantidades
-- 💾 **Persistência** — carrinho salvo no `localStorage`
-- 📋 **Checkout** — formulário de endereço e seleção de pagamento
-- ✅ **Validação** — React Hook Form + Zod com mensagens de erro
-- 🎉 **Confirmação** — página de sucesso com detalhes do pedido
-- 🌙 **Dark Mode** — alternância Light/Dark com persistência
-- 📱 **Responsivo** — mobile, tablet e desktop
-
----
-
-## 🛠️ Tecnologias
-
-| Tecnologia | Uso |
-|------------|-----|
-| React 18 | UI Library |
-| TypeScript 5 | Tipagem estática |
-| Vite 5 | Build tool |
-| React Router DOM 6 | Roteamento SPA |
-| React Hook Form 7 | Formulários |
-| Zod 3 | Validação de schema |
-| Context API + useReducer | Gerenciamento de estado |
-| CSS Modules | Estilização com escopo |
-| @phosphor-icons/react | Ícones |
+- ☕ **Catálogo de Cafés Completo**: 14 opções categorizadas (Tradicional, Com Leite, Especial, Alcoólico, Gelado) com descrições, tags visuais e preços formatados em moeda brasileira (R$).
+- 🛒 **Carrinho Reativo**: Adição dinâmica com controle de quantidade (+/-) no card e no checkout, remoção de itens e contagem em tempo real na badge do cabeçalho.
+- 💾 **Persistência com LocalStorage**: O estado do carrinho e o último pedido são persistidos automaticamente no navegador, sobrevivendo ao recarregamento da página.
+- 📝 **Checkout Validado**: Formulário de endereço completo (CEP, rua, número, complemento, bairro, cidade, UF) validado com **React Hook Form** e schemas rigorosos do **Zod**.
+- 💳 **Formas de Pagamento**: Seleção intuitiva entre Cartão de Crédito, Cartão de Débito e Dinheiro na entrega.
+- 🎉 **Página de Confirmação (Success)**: Apresenta resumo dos dados de entrega, previsão de tempo e forma de pagamento, com proteção de rota (redireciona para home se não houver pedido ativo).
+- 🌓 **Dark Mode & Light Mode**: Alternância de tema com variáveis CSS no seletor `[data-theme="dark"]`, persistência da preferência e detecção automática de `prefers-color-scheme`.
+- 📱 **Design 100% Responsivo**: Layout otimizado para Mobile (320px–480px), Tablet (768px), Laptop (1024px) e Desktop (1440px).
+- 🤖 **Identidade Visual com IA**: Logo original em SVG criada com auxílio de Inteligência Artificial, ilustrações exclusivas e iconografia Phosphor Icons.
 
 ---
 
-## 🚀 Rodando o projeto
+## 📱 Evidências das Telas Principais
 
-### Pré-requisitos
+### 1. Home — Catálogo & Hero (Light Mode vs Dark Mode)
 
-- Node.js 18+
-- npm 9+
-
-### Instalação
-
-```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/coffee-delivery.git
-
-# Entre na pasta
-cd coffee-delivery
-
-# Instale as dependências
-npm install
-
-# Inicie o servidor de desenvolvimento
-npm run dev
-```
-
-Acesse: `http://localhost:5173`
-
-### Scripts disponíveis
-
-| Script | Descrição |
-|--------|-----------|
-| `npm run dev` | Servidor de desenvolvimento |
-| `npm run build` | Build de produção |
-| `npm run preview` | Preview do build |
-| `npm run lint` | Análise estática (ESLint) |
+| ☀️ Tema Claro (Light Mode) | 🌙 Tema Escuro (Dark Mode) |
+|:---:|:---:|
+| ![Home Light](docs/screenshots/home-light.png) | ![Home Dark](docs/screenshots/home-dark.png) |
 
 ---
 
-## 📁 Estrutura do Projeto
+### 2. Checkout & Confirmação do Pedido
+
+| 🛒 Carrinho & Formulário de Entrega | 🎉 Pedido Confirmado (Success) |
+|:---:|:---:|
+| ![Checkout](docs/screenshots/checkout.png) | ![Success](docs/screenshots/success.png) |
+
+---
+
+### 3. Responsividade Mobile
+
+<div align="center">
+  <img src="docs/screenshots/mobile.png" alt="Versão Mobile" width="360" />
+  <p><em>Visualização adaptada para telas móveis (390px)</em></p>
+</div>
+
+---
+
+## 🛠️ Stack Tecnológica
+
+| Tecnologia | Versão | Função no Projeto |
+|------------|--------|-------------------|
+| **React** | 18.3 | Biblioteca base para construção da interface declarativa |
+| **TypeScript** | 5.4 | Tipagem estática rigorosa para componentes, contextos e reducers |
+| **Vite** | 5.4 | Bundler de alta performance e servidor de desenvolvimento |
+| **React Router DOM** | 6.23 | Gerenciamento de rotas SPA (`/`, `/checkout`, `/success`) |
+| **React Hook Form** | 7.51 | Controle de formulários com performance otimizada sem re-renders desnecessários |
+| **Zod** | 3.23 | Schema validation e inferência de tipos para o formulário de entrega |
+| **@hookform/resolvers** | 3.3 | Integração entre Zod e React Hook Form |
+| **@phosphor-icons/react** | 2.1 | Conjunto visual de ícones SVG consistentes |
+| **CSS Modules** | Nativo | Estilização com escopo local, evitando vazamento de classes |
+| **Context API + useReducer** | Nativo | Gerenciamento de estado global previsível (ações tipadas) |
+
+---
+
+## 📁 Estrutura de Diretórios
 
 ```
 coffee-delivery/
-├── public/                   # Assets estáticos
-│   ├── logo.svg              # Logo (criada com IA)
-│   └── images/coffees/       # Imagens dos cafés
+├── public/                       # Assets estáticos servidos diretamente
+│   ├── logo.svg                  # Logotipo Coffee Delivery (criado com IA)
+│   ├── hero-coffee.svg           # Ilustração do copo no banner hero
+│   ├── success-delivery.svg      # Ilustração do entregador na página de sucesso
+│   └── images/coffees/           # Vetores SVG dos 14 tipos de cafés
 ├── src/
-│   ├── contexts/             # CartContext + ThemeContext
-│   ├── reducers/             # cartReducer (useReducer)
-│   ├── types/                # Interfaces TypeScript
-│   ├── data/                 # Dados dos cafés
-│   ├── layouts/              # DefaultLayout
-│   ├── pages/                # Home, Checkout, Success
-│   ├── components/           # Header, CoffeeCard, QuantityControl
-│   ├── utils/                # formatCurrency
-│   └── styles/               # global.css (variáveis + reset)
-├── PRD_SPEC.md               # Requisitos do produto
-├── TECH_SPEC.md              # Especificação técnica
-├── TASKS_SPEC.md             # Planejamento de tarefas
-└── AGENTS.md                 # Diretrizes de uso de IA
+│   ├── components/               # Componentes reutilizáveis
+│   │   ├── CoffeeCard/           # Card individual do café no catálogo
+│   │   ├── Header/               # Topbar fixa com logo, tema e carrinho
+│   │   └── QuantityControl/      # Contador numérico reutilizável (-/+)
+│   ├── contexts/                 # Provedores de estado global
+│   │   ├── CartContext.tsx       # Gerenciamento do carrinho e pedido
+│   │   └── ThemeContext.tsx      # Gerenciamento do tema Light/Dark
+│   ├── data/                     # Catálogo estático dos cafés
+│   │   └── coffees.ts
+│   ├── layouts/                  # Layout padrão com Header fixo
+│   │   └── DefaultLayout/
+│   ├── pages/                    # Páginas da aplicação
+│   │   ├── Home/                 # Banner hero + Grade de produtos
+│   │   ├── Checkout/             # Formulário de endereço, pagamento e resumo
+│   │   └── Success/              # Confirmação do pedido enviado
+│   ├── reducers/                 # Lógica de redução de estado (actions tipadas)
+│   │   └── cartReducer.ts
+│   ├── styles/                   # Estilos globais e tokens CSS
+│   │   └── global.css            # Variáveis de cores, fontes e reset
+│   ├── types/                    # Definições TypeScript
+│   │   └── coffee.ts
+│   ├── utils/                    # Funções utilitárias
+│   │   └── formatCurrency.ts
+│   ├── App.tsx                   # Roteamento da aplicação
+│   └── main.tsx                  # Ponto de entrada com Providers
+├── docs/
+│   └── screenshots/              # Evidências fotográficas da aplicação
+├── PRD_SPEC.md                   # Requisitos do Produto
+├── TECH_SPEC.md                  # Especificação Técnica da Arquitetura
+├── TASKS_SPEC.md                 # Planejamento e Checklist de Tarefas
+├── AGENTS.md                     # Diretrizes de Uso de IA
+└── README.md                     # Apresentação do projeto
 ```
 
 ---
 
-## 📄 Documentação
+## 🚀 Como Executar o Projeto
+
+### Pré-requisitos
+- **Node.js** (versão 18.x ou superior recomendada)
+- **npm** (versão 9.x ou superior) ou **pnpm**
+
+### Passo a passo
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/seu-usuario/coffee-delivery.git
+   cd coffee-delivery
+   ```
+
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+
+3. **Inicie o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
+   Acesse a aplicação no navegador em `http://localhost:5173`.
+
+4. **Gerar build de produção:**
+   ```bash
+   npm run build
+   ```
+
+5. **Visualizar build de produção localmente:**
+   ```bash
+   npm run preview
+   ```
+
+---
+
+## 📄 Documentação Obrigatória
 
 | Documento | Descrição |
 |-----------|-----------|
-| [PRD_SPEC.md](PRD_SPEC.md) | Requisitos funcionais, não funcionais e critérios de aceite |
-| [TECH_SPEC.md](TECH_SPEC.md) | Arquitetura, componentes e estratégia de testes |
-| [TASKS_SPEC.md](TASKS_SPEC.md) | Planejamento e acompanhamento de tarefas |
-| [AGENTS.md](AGENTS.md) | Uso de IA no desenvolvimento |
+| [**PRD_SPEC.md**](PRD_SPEC.md) | Documento de Requisitos do Produto: objetivos, personas, requisitos funcionais (RF), requisitos não-funcionais (RNF), regras de negócio (RN) e critérios de aceite. |
+| [**TECH_SPEC.md**](TECH_SPEC.md) | Especificação Técnica: arquitetura de software, fluxo de dados, gerenciamento de estado via useReducer, validações com Zod, tokens CSS e estratégia de testes. |
+| [**TASKS_SPEC.md**](TASKS_SPEC.md) | Planejamento de implementação dividido em 12 fases com acompanhamento detalhado de tarefas concluídas. |
+| [**AGENTS.md**](AGENTS.md) | Diretrizes e registro transparente do uso de Inteligência Artificial durante todas as etapas do desenvolvimento do projeto. |
 
 ---
 
-## 🤖 IA no Desenvolvimento
+## 🤖 Uso de Inteligência Artificial
 
-Este projeto foi desenvolvido com apoio do assistente **Antigravity (Google DeepMind)** nas fases de planejamento, implementação, revisão e documentação. Consulte o [AGENTS.md](AGENTS.md) para detalhes sobre como a IA foi utilizada de forma responsável e transparente.
+Conforme as diretrizes da disciplina, este projeto utilizou o assistente de IA **Antigravity (powered by Google DeepMind)** como ferramenta de apoio em:
+1. **Planejamento e Arquitetura**: Definição da divisão em `Context API + useReducer` sem bibliotecas externas pesadas.
+2. **Implementação de Código**: Tipagem discriminada de actions do reducer, integração do Zod com React Hook Form e tokens para o Dark Mode.
+3. **Identidade Visual**: Criação do logotipo original em vetor SVG e ilustrações temáticas.
+4. **Documentação Técnica**: Elaboração das especificações completas (PRD, TECH, TASKS e AGENTS).
 
----
-
-## 📱 Screenshots
-
-> _Screenshots serão adicionadas após o deploy_
-
-| Home (Light) | Home (Dark) |
-|:---:|:---:|
-| ![Home Light](#) | ![Home Dark](#) |
-
-| Checkout | Confirmação |
-|:---:|:---:|
-| ![Checkout](#) | ![Success](#) |
+Para maiores detalhes e diretrizes éticas aplicadas, consulte o [AGENTS.md](AGENTS.md).
 
 ---
 
-## 👨‍💻 Desenvolvido por
+## 👨‍💻 Autor
 
-Projeto acadêmico — Disciplina de Single Page Application (SPA)  
-Curso de Desenvolvimento Web — 2026
+Projeto desenvolvido como **Projeto Final Avaliativo** da disciplina de **Single Page Application (SPA)**.  
+Ano: 2026
 
 ---
 
 <div align="center">
-  <sub>Feito com ☕ e muito TypeScript</sub>
+  <sub>Desenvolvido com ☕ e TypeScript</sub>
 </div>
