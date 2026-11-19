@@ -74,6 +74,14 @@ Modelo: Claude Sonnet (Thinking)
 > **Dev:** "Como implementar Dark Mode sem framework CSS?"  
 > **IA:** Sugeriu a abordagem de variáveis CSS com seletor `[data-theme="dark"]` aplicado no elemento raiz via JavaScript, combinando com `localStorage` para persistência e `matchMedia` para detecção do sistema.
 
+### Exemplo 4 — Sistema Multi-Temas e Paletas Dinâmicas
+> **Dev:** "Como expandir o tema além do Dark/Light para permitir que o usuário escolha diferentes paletas de cores?"  
+> **IA:** Propôs desacoplar o modo (Light/Dark) da paleta de cores (Clássico, Matcha, Berry, Caramelo, Cyber) utilizando atributos combinados no elemento raiz (`<html data-theme="..." data-palette="...">`) e remapeando os tokens de cores primárias e de destaque nas variáveis CSS.
+
+### Exemplo 5 — Autocompletar de CEP e Cupons
+> **Dev:** "Como enriquecer o checkout com ViaCEP e cupons sem ferir as regras do projeto?"  
+> **IA:** Implementou consulta assíncrona da API ViaCEP com `fetch` ao completar 8 dígitos, injetando os dados diretamente nos campos via `setValue` do React Hook Form, além de uma engine de cupons integrada ao `CartContext` com recálculo automático do total e isenção de frete.
+
 ---
 
 ## Registro de Commits com IA
@@ -84,6 +92,9 @@ Exemplo:
 ```
 feat: implementar CartContext com useReducer e LocalStorage [IA]
 feat: implementar validação de formulário com Zod e RHF [IA]
-feat: implementar Dark Mode com CSS variables [IA]
-docs: gerar documentação obrigatória PRD/TECH/TASKS/AGENTS [IA]
+feat: implementar Dark Mode e 5 paletas de cores customizáveis [IA]
+feat: adicionar busca instantânea, filtros e favoritos [IA]
+feat: integrar API ViaCEP para autocompletar endereço e cupons [IA]
+feat: adicionar histórico de pedidos e notificações Toast [IA]
+docs: atualizar documentação obrigatória com recursos exclusivos [IA]
 ```

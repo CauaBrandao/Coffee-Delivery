@@ -1,0 +1,184 @@
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 6px;
+  background-color: var(--purple-light);
+  color: var(--purple-dark);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.trigger:hover,
+.trigger.active {
+  background-color: var(--purple);
+  color: var(--white);
+}
+
+.paletteBadge {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--white);
+}
+
+.popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 17rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 12px 32px var(--shadow);
+  z-index: 200;
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.popoverHeader {
+  margin-bottom: 0.875rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.popoverTitle {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--base-title);
+}
+
+.section {
+  margin-bottom: 1rem;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.sectionLabel {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--base-label);
+  margin-bottom: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.themeToggleRow {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.modeBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: var(--base-button);
+  color: var(--base-text);
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.modeBtn:hover {
+  background-color: var(--base-hover);
+}
+
+.modeActive {
+  background-color: var(--purple-light);
+  border-color: var(--purple);
+  color: var(--purple-dark);
+  font-weight: 700;
+}
+
+.palettesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.paletteOption {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.625rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.paletteOption:hover {
+  background-color: var(--base-button);
+}
+
+.paletteSelected {
+  background-color: var(--yellow-light);
+  border-color: var(--yellow);
+}
+
+.paletteIcon {
+  font-size: 1rem;
+}
+
+.paletteName {
+  flex: 1;
+  font-size: 0.8125rem;
+  color: var(--base-text);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+
+.swatches {
+  display: flex;
+  gap: 3px;
+}
+
+.swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.checkIcon {
+  color: var(--yellow-dark);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

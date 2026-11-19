@@ -128,8 +128,10 @@
 - [x] Script automatizado de captura via Chrome Headless
 - [x] `home-light.png`: Catálogo completo no tema claro
 - [x] `home-dark.png`: Catálogo completo no tema escuro
-- [x] `checkout.png`: Carrinho com itens e formulário preenchido
-- [x] `success.png`: Página de pedido confirmado
+- [x] `theme-matcha.png`: Catálogo com a paleta Matcha & Menta
+- [x] `theme-cyber.png`: Catálogo com a paleta Cyber & Neon
+- [x] `checkout.png`: Carrinho com itens, cupom aplicado e autocompletar de CEP
+- [x] `success.png`: Página de pedido confirmado com resumo
 - [x] `mobile.png`: Visualização responsiva em viewport mobile (390px)
 
 ---
@@ -140,3 +142,16 @@
 - [x] Build de produção (`vite build`) gerado com sucesso em `dist/`
 - [x] Teste de carregamento e navegação entre todas as rotas
 - [x] Validação da persistência no `localStorage`
+
+---
+
+## Fase 13 — Inovação & Melhorias Exclusivas (Além da Documentação) ✅
+
+- [x] **Sistema Multi-Temas**: Popover interativo com 5 paletas de cores dinâmicas (Clássico, Matcha, Berry, Caramelo, Cyber)
+- [x] **Barra de Pesquisa Instantânea**: Busca em tempo real por nome, descrição ou sabor no catálogo
+- [x] **Chips de Filtro por Categoria**: Filtros rápidos por tags (Tradicionais, Com Leite, Especiais, etc.) com contadores
+- [x] **Sistema de Favoritos (Wishlist)**: Botão de coração nos cards com persistência no navegador
+- [x] **Autocompletar de CEP via API ViaCEP**: Preenchimento instantâneo de rua, bairro, cidade e UF com feedback de loading
+- [x] **Engine de Cupons de Desconto**: Cupons `COFFEE10` e `FRETEGRATIS` com recálculo automático do total
+- [x] **Histórico "Meus Pedidos"**: Drawer/modal para consulta de pedidos anteriores salvos
+- [x] **Notificações Toast Animadas**: Feedback visual imediato ao adicionar cafés com ação de ir para o checkout

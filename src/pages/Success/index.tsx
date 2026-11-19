@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import { Timer, MapPin, CurrencyDollar } from '@phosphor-icons/react'
+import { Timer, MapPin, CurrencyDollar, CheckCircle, Package } from '@phosphor-icons/react'
 import { useCart } from '@/contexts/CartContext'
+import { formatCurrency } from '@/utils/formatCurrency'
 import styles from './Success.module.css'
 
 const PAYMENT_LABELS: Record<string, string> = {
@@ -18,16 +19,23 @@ export function Success() {
     return null
   }
 
-  const { address, payment } = lastOrder
+  const { address, payment, id, items, total, deliveryFee, discount, coupon } = lastOrder
+  const finalPaid = total + deliveryFee - (discount || 0)
 
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.header}>
-          <h1 className={styles.title}>Uhu! Pedido confirmado</h1>
-          <p className={styles.subtitle}>
-            Agora é só aguardar que logo o café chegará até você
-          </p>
+          <div className={styles.headerTitleRow}>
+            <CheckCircle size={32} weight="fill" className={styles.successIcon} />
+            <div>
+              <h1 className={styles.title}>Uhu! Pedido confirmado</h1>
+              <p className={styles.subtitle}>
+                Agora é só aguardar que logo o café chegará até você
+              </p>
+            </div>
+          </div>
+          {id && <span className={styles.orderBadge}>Pedido {id}</span>}
         </div>
 
         <div className={styles.details}>
@@ -40,7 +48,7 @@ export function Success() {
                 <p>
                   Entrega em{' '}
                   <strong>
-                    {address.street}, {address.number}
+                    {address.street}, {address.number} {address.complement ? `(${address.complement})` : ''}
                   </strong>
                 </p>
                 <p>
@@ -68,6 +76,26 @@ export function Success() {
                 <strong>{PAYMENT_LABELS[payment] ?? payment}</strong>
               </div>
             </div>
+
+            {items && items.length > 0 && (
+              <div className={styles.orderSummarySnippet}>
+                <div className={styles.snippetHeader}>
+                  <Package size={16} />
+                  <span>Itens do pedido ({items.reduce((acc, i) => acc + i.quantity, 0)})</span>
+                </div>
+                <div className={styles.snippetItems}>
+                  {items.map(item => (
+                    <span key={item.id} className={styles.snippetItem}>
+                      {item.quantity}x {item.name}
+                    </span>
+                  ))}
+                </div>
+                <div className={styles.snippetTotalRow}>
+                  {coupon && <span className={styles.snippetCoupon}>Cupom {coupon} aplicado</span>}
+                  <strong className={styles.snippetTotal}>Total pago: R$ {formatCurrency(finalPaid)}</strong>
+                </div>
+              </div>
+            )}
           </div>
 
           <img
@@ -77,9 +105,11 @@ export function Success() {
           />
         </div>
 
-        <button className={styles.backBtn} onClick={() => navigate('/')}>
-          Fazer novo pedido
-        </button>
+        <div className={styles.actions}>
+          <button className={styles.backBtn} onClick={() => navigate('/')}>
+            Fazer novo pedido
+          </button>
+        </div>
       </div>
     </div>
   )

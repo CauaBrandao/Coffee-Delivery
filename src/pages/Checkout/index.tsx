@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -9,8 +10,13 @@ import {
   Bank,
   Money,
   Trash,
+  Tag,
+  Check,
+  X,
+  Spinner,
 } from '@phosphor-icons/react'
 import { useCart } from '@/contexts/CartContext'
+import { useToast } from '@/contexts/ToastContext'
 import { QuantityControl } from '@/components/QuantityControl'
 import { formatCurrency } from '@/utils/formatCurrency'
 import { PaymentMethod } from '@/types/coffee'
@@ -39,7 +45,24 @@ const PAYMENT_OPTIONS: { value: PaymentMethod; label: string; icon: JSX.Element 
 
 export function Checkout() {
   const navigate = useNavigate()
-  const { cartItems, cartTotal, deliveryFee, updateQuantity, removeFromCart, checkout } = useCart()
+  const {
+    cartItems,
+    cartTotal,
+    deliveryFee,
+    coupon,
+    discount,
+    finalTotal,
+    updateQuantity,
+    removeFromCart,
+    checkout,
+    applyCoupon,
+    removeCoupon,
+  } = useCart()
+  const { showToast } = useToast()
+
+  const [couponInput, setCouponInput] = useState('')
+  const [couponError, setCouponError] = useState<string | null>(null)
+  const [loadingCep, setLoadingCep] = useState(false)
 
   const isDemo =
     window.location.href.includes('demo=1') ||
@@ -49,6 +72,7 @@ export function Checkout() {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
@@ -67,14 +91,50 @@ export function Checkout() {
   })
 
   const selectedPayment = watch('payment')
+  const cepValue = watch('cep')
+
+  // Auto-complete via ViaCEP API
+  useEffect(() => {
+    if (!cepValue) return
+    const cleanCep = cepValue.replace(/\D/g, '')
+
+    if (cleanCep.length === 8) {
+      setLoadingCep(true)
+      fetch(`https://viacep.com.br/ws/${cleanCep}/json/`)
+        .then(res => res.json())
+        .then(data => {
+          if (!data.erro) {
+            setValue('street', data.logradouro || '', { shouldValidate: true })
+            setValue('neighborhood', data.bairro || '', { shouldValidate: true })
+            setValue('city', data.localidade || '', { shouldValidate: true })
+            setValue('state', data.uf || '', { shouldValidate: true })
+            showToast('📍 Endereço preenchido automaticamente pelo CEP!')
+          }
+        })
+        .catch(() => {})
+        .finally(() => setLoadingCep(false))
+    }
+  }, [cepValue, setValue, showToast])
 
   if (cartItems.length === 0) {
     return (
       <div className={styles.empty}>
         <h2>Seu carrinho está vazio</h2>
+        <p className={styles.emptySub}>Adicione cafés deliciosos do nosso catálogo para continuar.</p>
         <button onClick={() => navigate('/')}>Voltar ao catálogo</button>
       </div>
     )
+  }
+
+  function handleApplyCoupon() {
+    setCouponError(null)
+    const res = applyCoupon(couponInput)
+    if (res.success) {
+      showToast(res.message)
+      setCouponInput('')
+    } else {
+      setCouponError(res.message)
+    }
   }
 
   function onSubmit(data: CheckoutFormData) {
@@ -93,6 +153,7 @@ export function Checkout() {
       total: cartTotal,
       deliveryFee,
     })
+    showToast('🎉 Pedido confirmado com sucesso!')
     navigate('/success')
   }
 
@@ -116,12 +177,17 @@ export function Checkout() {
 
           <div className={styles.formGrid}>
             <div className={`${styles.field} ${styles.colFull}`}>
-              <input
-                {...register('cep')}
-                placeholder="CEP"
-                className={errors.cep ? styles.fieldError : ''}
-              />
+              <div className={styles.inputWithLoader}>
+                <input
+                  {...register('cep')}
+                  placeholder="CEP (ex: 90010-000)"
+                  maxLength={9}
+                  className={errors.cep ? styles.fieldError : ''}
+                />
+                {loadingCep && <Spinner size={18} className={styles.spinner} />}
+              </div>
               {errors.cep && <span className={styles.errorMsg}>{errors.cep.message}</span>}
+              <span className={styles.fieldHint}>Preencha o CEP para autocompletar o endereço</span>
             </div>
 
             <div className={`${styles.field} ${styles.colFull}`}>
@@ -243,6 +309,58 @@ export function Checkout() {
             </div>
           ))}
 
+          {/* Coupon Section */}
+          <div className={styles.couponSection}>
+            <div className={styles.couponHeader}>
+              <Tag size={16} className={styles.couponIcon} />
+              <span>Cupom de desconto</span>
+            </div>
+
+            {coupon ? (
+              <div className={styles.appliedCoupon}>
+                <div className={styles.couponBadge}>
+                  <Check size={14} weight="bold" />
+                  <span>{coupon}</span>
+                </div>
+                <button
+                  type="button"
+                  className={styles.removeCouponBtn}
+                  onClick={removeCoupon}
+                  aria-label="Remover cupom"
+                >
+                  <X size={14} />
+                  Remover
+                </button>
+              </div>
+            ) : (
+              <div className={styles.couponInputWrap}>
+                <input
+                  type="text"
+                  placeholder="Código do cupom (ex: COFFEE10)"
+                  value={couponInput}
+                  onChange={e => setCouponInput(e.target.value)}
+                  className={styles.couponInput}
+                />
+                <button
+                  type="button"
+                  className={styles.applyCouponBtn}
+                  onClick={handleApplyCoupon}
+                >
+                  Aplicar
+                </button>
+              </div>
+            )}
+            {couponError && <span className={styles.errorMsg}>{couponError}</span>}
+
+            {!coupon && (
+              <div className={styles.couponHints}>
+                <span>Disponíveis: </span>
+                <button type="button" onClick={() => setCouponInput('COFFEE10')}>COFFEE10 (-10%)</button>
+                <button type="button" onClick={() => setCouponInput('FRETEGRATIS')}>FRETEGRATIS</button>
+              </div>
+            )}
+          </div>
+
           <div className={styles.divider} />
 
           <div className={styles.summary}>
@@ -250,13 +368,22 @@ export function Checkout() {
               <span>Total de itens</span>
               <span>R$ {formatCurrency(cartTotal)}</span>
             </div>
+
+            {discount > 0 && (
+              <div className={`${styles.summaryRow} ${styles.discountRow}`}>
+                <span>Desconto</span>
+                <span>- R$ {formatCurrency(discount)}</span>
+              </div>
+            )}
+
             <div className={styles.summaryRow}>
               <span>Entrega</span>
-              <span>R$ {formatCurrency(deliveryFee)}</span>
+              <span>{deliveryFee === 0 ? <strong className={styles.freeShipping}>Grátis</strong> : `R$ ${formatCurrency(deliveryFee)}`}</span>
             </div>
+
             <div className={`${styles.summaryRow} ${styles.total}`}>
               <strong>Total</strong>
-              <strong>R$ {formatCurrency(cartTotal + deliveryFee)}</strong>
+              <strong>R$ {formatCurrency(finalTotal)}</strong>
             </div>
           </div>
 

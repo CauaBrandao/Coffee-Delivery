@@ -1,15 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" fill="none">
-  <!-- Cup body -->
-  <rect x="10" y="22" width="30" height="24" rx="4" fill="#C47F17"/>
-  <!-- Cup handle -->
-  <path d="M40 28 Q52 28 52 36 Q52 44 40 44" stroke="#C47F17" stroke-width="4" fill="none" stroke-linecap="round"/>
-  <!-- Steam lines -->
-  <path d="M18 18 Q20 13 18 8" stroke="#8047F8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-  <path d="M25 16 Q27 11 25 6" stroke="#8047F8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-  <path d="M32 18 Q34 13 32 8" stroke="#8047F8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-  <!-- Coffee surface -->
-  <ellipse cx="25" cy="22" rx="15" ry="4" fill="#DBAC2C"/>
-  <!-- Delivery icon (motorcycle dot) -->
-  <circle cx="49" cy="10" r="8" fill="#4B2995"/>
-  <text x="49" y="14" text-anchor="middle" font-size="10" fill="white">🛵</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 68" fill="none">
+  <!-- ================= COFFEE CUP SYMBOL (Matches Reference) ================= -->
+  <g transform="translate(6, 4)">
+    <!-- Steam Lines (Two graceful S-curves rising from the cup) -->
+    <!-- Left Steam Ribbon -->
+    <path d="M 23 16 C 20 12 25 7 22 2 C 20.5 0.5 19 2 20 4 C 22 8 18 12 21 16 Z" 
+          fill="#5C331E"/>
+    <!-- Right Steam Ribbon (taller and elegant) -->
+    <path d="M 31 16 C 27 11 34 6 30 0.5 C 28.5 -0.5 27 1 28 3 C 31 7 25 11 29 16 Z" 
+          fill="#5C331E"/>
+
+    <!-- Cup Group -->
+    <!-- Cup Handle (Right) -->
+    <path d="M 38 23 C 49 23 51 37 40 42 C 37 43 35 41 35.5 39 C 43 36 43 28 36 26 Z" 
+          fill="#4A2612"/>
+
+    <!-- Cup Body -->
+    <path d="M 12 22 C 12.5 36 18 47 28 47 C 38 47 43.5 36 44 22 Z" 
+          fill="#4A2612"/>
+
+    <!-- Rim Outer Highlight Cutout (Negative Space Curve) -->
+    <ellipse cx="28" cy="22" rx="16" ry="4.5" fill="#4A2612"/>
+    <ellipse cx="28" cy="22" rx="15" ry="4" stroke="#FFF7F0" stroke-width="1.2" fill="none"/>
+
+    <!-- Coffee Liquid Interior Surface -->
+    <ellipse cx="28" cy="22.5" rx="13.5" ry="3.2" fill="#2E160A"/>
+    <!-- Crema / Foam Accent -->
+    <ellipse cx="28" cy="22.5" rx="11" ry="2.2" fill="#6A3B22" opacity="0.6"/>
+
+    <!-- Cup Body Accent Curve (Front Shading line like reference) -->
+    <path d="M 16 26 C 17 35 21 42 27 44" 
+          stroke="#FFF7F0" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.4"/>
+
+    <!-- Saucer (Nested elliptical grooves like reference) -->
+    <!-- Outer Saucer Ellipse -->
+    <ellipse cx="28" cy="51" rx="27" ry="6" fill="#4A2612"/>
+    <!-- Saucer Inner Groove (Negative Space Ring) -->
+    <ellipse cx="28" cy="50.2" rx="23.5" ry="4.2" stroke="#FFF7F0" stroke-width="1.2" fill="none"/>
+    <!-- Saucer Center Well -->
+    <ellipse cx="28" cy="50" rx="15" ry="2.6" fill="#3B1C0B" opacity="0.5"/>
+  </g>
+
+  <!-- ================= TYPOGRAPHY (Coffee Delivery) ================= -->
+  <g transform="translate(74, 13)">
+    <!-- "Coffee" -->
+    <text x="0" y="24" 
+          font-family="'Baloo 2', 'Georgia', serif" 
+          font-size="27" 
+          font-weight="800" 
+          letter-spacing="-0.5"
+          fill="#3B1C0B">Coffee</text>
+
+    <!-- "DELIVERY" with elegant letter spacing -->
+    <text x="1" y="44" 
+          font-family="'Roboto', 'Segoe UI', system-ui, sans-serif" 
+          font-size="13.5" 
+          font-weight="800" 
+          letter-spacing="3.5"
+          fill="#8047F8">DELIVERY</text>
+
+    <!-- Decorative Coffee Bean Accent next to text -->
+    <g transform="translate(108, 33) rotate(25) scale(0.65)">
+      <ellipse cx="7" cy="5" rx="7" ry="5" fill="#C47F17"/>
+      <path d="M 2 5 Q 7 2 12 5" stroke="#FFF" stroke-width="1.2" fill="none"/>
+    </g>
+  </g>
 </svg>

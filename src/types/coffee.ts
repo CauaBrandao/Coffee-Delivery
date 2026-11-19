@@ -24,9 +24,13 @@ export interface OrderAddress {
 }
 
 export interface Order {
+  id?: string
+  createdAt?: string
   address: OrderAddress
   payment: PaymentMethod
   items: CartItem[]
   total: number
   deliveryFee: number
+  coupon?: string
+  discount?: number
 }

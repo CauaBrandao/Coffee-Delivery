@@ -46,7 +46,7 @@ const server = http.createServer((req, res) => {
   });
 });
 
-function captureScreenshot({ url, output, width, height, delay = 2000 }) {
+function captureScreenshot({ url, output, width, height, delay = 2500 }) {
   return new Promise((resolve, reject) => {
     const args = [
       '--headless=new',
@@ -78,41 +78,57 @@ server.listen(PORT, '127.0.0.1', async () => {
   console.log(`Local test server running at http://127.0.0.1:${PORT}`);
 
   try {
-    // 1. Home Light
+    // 1. Home Light (Classic)
     await captureScreenshot({
-      url: `http://127.0.0.1:${PORT}/?theme=light#/`,
+      url: `http://127.0.0.1:${PORT}/?theme=light&palette=classic#/`,
       output: path.join(SCREENSHOT_DIR, 'home-light.png'),
       width: 1440,
-      height: 1080,
+      height: 1150,
     });
 
-    // 2. Home Dark
+    // 2. Home Dark (Classic)
     await captureScreenshot({
-      url: `http://127.0.0.1:${PORT}/?theme=dark#/`,
+      url: `http://127.0.0.1:${PORT}/?theme=dark&palette=classic#/`,
       output: path.join(SCREENSHOT_DIR, 'home-dark.png'),
       width: 1440,
-      height: 1080,
+      height: 1150,
     });
 
-    // 3. Checkout (with demo cart items)
+    // 3. Custom Palette: Matcha & Menta
+    await captureScreenshot({
+      url: `http://127.0.0.1:${PORT}/?theme=light&palette=matcha#/`,
+      output: path.join(SCREENSHOT_DIR, 'theme-matcha.png'),
+      width: 1440,
+      height: 1150,
+    });
+
+    // 4. Custom Palette: Cyber & Neon (Dark)
+    await captureScreenshot({
+      url: `http://127.0.0.1:${PORT}/?theme=dark&palette=cyber#/`,
+      output: path.join(SCREENSHOT_DIR, 'theme-cyber.png'),
+      width: 1440,
+      height: 1150,
+    });
+
+    // 5. Checkout (with demo cart items & coupon)
     await captureScreenshot({
       url: `http://127.0.0.1:${PORT}/?demo=1#/checkout`,
       output: path.join(SCREENSHOT_DIR, 'checkout.png'),
       width: 1440,
-      height: 980,
+      height: 1050,
     });
 
-    // 4. Success Order
+    // 6. Success Order
     await captureScreenshot({
       url: `http://127.0.0.1:${PORT}/?demo=1#/success`,
       output: path.join(SCREENSHOT_DIR, 'success.png'),
       width: 1440,
-      height: 850,
+      height: 900,
     });
 
-    // 5. Mobile
+    // 7. Mobile
     await captureScreenshot({
-      url: `http://127.0.0.1:${PORT}/#/`,
+      url: `http://127.0.0.1:${PORT}/?theme=light#/`,
       output: path.join(SCREENSHOT_DIR, 'mobile.png'),
       width: 390,
       height: 844,

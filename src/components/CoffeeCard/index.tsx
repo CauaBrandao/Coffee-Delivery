@@ -1,7 +1,9 @@
 import { useState } from 'react'
-import { ShoppingCartSimple } from '@phosphor-icons/react'
+import { ShoppingCartSimple, Heart } from '@phosphor-icons/react'
+import { useNavigate } from 'react-router-dom'
 import { Coffee } from '@/types/coffee'
 import { useCart } from '@/contexts/CartContext'
+import { useToast } from '@/contexts/ToastContext'
 import { QuantityControl } from '@/components/QuantityControl'
 import { formatCurrency } from '@/utils/formatCurrency'
 import styles from './CoffeeCard.module.css'
@@ -12,15 +14,34 @@ interface CoffeeCardProps {
 
 export function CoffeeCard({ coffee }: CoffeeCardProps) {
   const [quantity, setQuantity] = useState(1)
-  const { addToCart } = useCart()
+  const { addToCart, toggleFavorite, isFavorite } = useCart()
+  const { showToast } = useToast()
+  const navigate = useNavigate()
+
+  const favorited = isFavorite(coffee.id)
 
   function handleAddToCart() {
     addToCart(coffee, quantity)
+    showToast(
+      `${quantity}x ${coffee.name} adicionado ao carrinho!`,
+      'Ver Carrinho',
+      () => navigate('/checkout')
+    )
     setQuantity(1)
   }
 
   return (
     <article className={styles.card}>
+      <button
+        type="button"
+        className={`${styles.favoriteBtn} ${favorited ? styles.favorited : ''}`}
+        onClick={() => toggleFavorite(coffee.id)}
+        aria-label={favorited ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+        title={favorited ? 'Remover dos favoritos' : 'Favoritar'}
+      >
+        <Heart size={18} weight={favorited ? 'fill' : 'regular'} />
+      </button>
+
       <img src={coffee.image} alt={coffee.name} className={styles.image} />
 
       <div className={styles.tags}>

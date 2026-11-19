@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,6 +8,35 @@
   padding: 0 1.25rem 1.25rem;
   text-align: center;
   transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.favoriteBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--base-button);
+  color: var(--base-label);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.favoriteBtn:hover {
+  background: var(--purple-light);
+  color: var(--purple-dark);
+  transform: scale(1.1);
+}
+
+.favorited {
+  color: #E63946 !important;
+  background: #FFE5E9 !important;
 }
 
 .card:hover {

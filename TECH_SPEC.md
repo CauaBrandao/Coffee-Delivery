@@ -6,14 +6,16 @@
 
 | Tecnologia | Versão | Função |
 |------------|--------|--------|
-| React | 18.3 | UI Library |
-| TypeScript | 5.4 | Tipagem estática |
-| Vite | 5.2 | Build tool e dev server |
-| React Router DOM | 6.23 | Roteamento SPA |
-| React Hook Form | 7.51 | Gerenciamento de formulários |
-| Zod | 3.23 | Validação de schema |
-| @phosphor-icons/react | 2.1 | Ícones SVG |
-| CSS Modules | — | Estilização com escopo |
+| React | 18.3 | UI Library (Functional Components + Hooks) |
+| TypeScript | 5.4 | Tipagem estática rigorosa em strict mode |
+| Vite | 5.4 | Build tool, HMR e dev server de alta performance |
+| React Router DOM | 6.23 | Roteamento SPA declarativo com proteção de rotas |
+| React Hook Form | 7.51 | Controle performático de formulários sem re-renders |
+| Zod | 3.23 | Validação de schema com inferência estática de tipos |
+| @hookform/resolvers | 3.3 | Integração nativa entre Zod e React Hook Form |
+| @phosphor-icons/react | 2.1 | Ícones SVG semânticos |
+| CSS Modules | Nativo | Estilização com escopo isolado por componente |
+| ViaCEP REST API | Externa | Consulta assíncrona de logradouro via CEP brasileiro |
 
 ---
 
@@ -21,40 +23,44 @@
 
 ```
 src/
-├── App.tsx                    # Roteamento principal
-├── main.tsx                   # Entry point, Providers
+├── App.tsx                     # Definição e proteção das rotas principais
+├── main.tsx                    # Entry point e hierarquia de Providers
 ├── contexts/
-│   ├── CartContext.tsx         # Estado global do carrinho
-│   └── ThemeContext.tsx        # Estado do tema (light/dark)
+│   ├── CartContext.tsx         # Carrinho, cupons, favoritos e histórico de pedidos
+│   ├── ThemeContext.tsx        # Modo Light/Dark e 5 paletas de cores dinâmicas
+│   └── ToastContext.tsx        # Sistema de notificações Toast animadas
 ├── reducers/
-│   └── cartReducer.ts          # Lógica de redução do carrinho
+│   └── cartReducer.ts          # Redutor de estado do carrinho (ações tipadas)
 ├── types/
-│   └── coffee.ts               # Interfaces TypeScript
+│   └── coffee.ts               # Interfaces TypeScript centrais
 ├── data/
-│   └── coffees.ts              # Dados estáticos dos cafés
+│   └── coffees.ts              # Catálogo estático dos 14 tipos de cafés
 ├── layouts/
-│   └── DefaultLayout/          # Layout com Header + Outlet
+│   └── DefaultLayout/          # Layout compartilhado com Header fixo e Outlet
 ├── pages/
-│   ├── Home/                   # Catálogo + Hero
-│   ├── Checkout/               # Formulário + Resumo
-│   └── Success/                # Confirmação do pedido
+│   ├── Home/                   # Hero banner, busca instantânea, chips de filtro e catálogo
+│   ├── Checkout/               # Formulário ViaCEP, seleção de pagamento, cupom e resumo
+│   └── Success/                # Confirmação do pedido com detalhes e resumo de itens
 ├── components/
-│   ├── Header/                 # Navegação + Carrinho + Tema
-│   ├── CoffeeCard/             # Card individual de café
-│   └── QuantityControl/        # Seletor de quantidade reutilizável
+│   ├── Header/                 # Topbar fixa com logo, seletor de tema, pedidos e carrinho
+│   ├── CoffeeCard/             # Card individual com botão favoritar, quantidade e adicionar
+│   ├── OrdersModal/            # Modal de histórico dos pedidos anteriores
+│   ├── QuantityControl/        # Controle numérico reutilizável (-/+)
+│   └── ThemeSelector/          # Popover de escolha de temas e paletas de cores
 ├── utils/
-│   └── formatCurrency.ts       # Formatar valores monetários
+│   └── formatCurrency.ts        # Formatação monetária BRL (R$ 0,00)
 └── styles/
-    └── global.css              # Variáveis CSS + Reset
+    └── global.css              # Tokens CSS, variáveis dos temas e reset
 ```
 
 ---
 
-## 3. Gerenciamento de Estado
+## 3. Gerenciamento de Estado Global
+
+A aplicação adota a **Context API nativa do React** combinada com `useReducer` e `useState`, sem bibliotecas externas pesadas, cumprindo estritamente os requisitos acadêmicos da disciplina.
 
 ### CartContext + useReducer
-
-O estado global do carrinho é gerenciado com `useReducer` dentro de `CartContext`:
+Gerencia as operações do carrinho com fluxo unidirecional e ações discriminadas:
 
 ```typescript
 type CartAction =
@@ -65,82 +71,82 @@ type CartAction =
   | { type: 'CHECKOUT';       payload: { order: Order } }
 ```
 
-**Persistência:** `useEffect` sincroniza `cartItems` e `lastOrder` no `localStorage` a cada mudança.
+**Funcionalidades avançadas integradas ao CartContext:**
+- **Persistência dupla**: Sincronização automática em `localStorage` para itens (`coffee-delivery:cart-v1`), último pedido (`coffee-delivery:last-order-v1`), histórico (`coffee-delivery:orders-history-v1`) e favoritos (`coffee-delivery:favorites-v1`).
+- **Engine de Cupons**: Cálculo em tempo real de descontos percentuais (`COFFEE10` = -10%), frete grátis (`FRETEGRATIS` = -R$ 3,50) e valores fixos (`PRIMEIRACOMPRA` = -R$ 5,00).
 
-**Inicialização lazy:** o `useReducer` usa a função inicializadora para hidratar o estado a partir do `localStorage` na primeira renderização.
+### ThemeContext (Sistema Multi-Temas)
+Controla o modo de exibição (`'light' | 'dark'`) e a paleta de cores ativa:
+- `classic`: Ouro / Amarelo + Roxo
+- `matcha`: Verde Esmeralda + Menta
+- `berry`: Rosa Rubi + Coral
+- `caramel`: Âmbar Caramelo + Mocha
+- `cyber`: Ciano Elétrico + Violeta Neon
 
-### ThemeContext
+O tema é injetado diretamente no elemento raiz (`<html data-theme="..." data-palette="...">`), propagando as variáveis CSS correspondentes para todos os componentes.
 
-Gerencia o tema (`'light' | 'dark'`) com `useState`. O tema é aplicado via atributo `data-theme` no `<html>` e persistido no `localStorage`. Na primeira visita, respeita `prefers-color-scheme`.
+### ToastContext
+Provê a função `showToast(text, actionLabel?, onAction?)` em qualquer parte da árvore de componentes, exibindo alertas não-bloqueantes com temporizador automático de 3,5 segundos.
 
 ---
 
-## 4. Roteamento
+## 4. Integração com API Externa (ViaCEP)
+
+No checkout, um `useEffect` monitora o campo `cep`. Ao atingir 8 caracteres numéricos, dispara uma requisição `fetch` assíncrona para a API pública ViaCEP:
+
+```typescript
+fetch(`https://viacep.com.br/ws/${cleanCep}/json/`)
+  .then(res => res.json())
+  .then(data => {
+    if (!data.erro) {
+      setValue('street', data.logradouro)
+      setValue('neighborhood', data.bairro)
+      setValue('city', data.localidade)
+      setValue('state', data.uf)
+    }
+  })
+```
+
+A interface exibe um indicador de carregamento (`Spinner`) e notificação Toast de confirmação.
+
+---
+
+## 5. Roteamento e Proteção de Rotas
 
 ```
-/           → Home (catálogo + hero)
-/checkout   → Checkout (formulário + resumo)
-/success    → Confirmação do pedido
+/           → Home (Hero, Busca, Filtros, Catálogo)
+/checkout   → Checkout (Formulário ViaCEP, Pagamento, Cupom, Resumo)
+/success    → Confirmação do Pedido (Guarda de rota ativa)
 ```
 
-Todas as rotas compartilham o `DefaultLayout` que renderiza o `Header` fixo.
-
-Guarda de rota: a página `/success` redireciona para `/` se `lastOrder` estiver nulo.
+**Guarda de rota:** A página `/success` valida a existência de `lastOrder`. Caso nulo, redireciona o usuário imediatamente para a rota raiz `/`.
 
 ---
 
-## 5. Componentes Reutilizáveis
-
-### `<QuantityControl />`
-- Props: `quantity`, `onIncrease`, `onDecrease`, `min`, `max`, `size`
-- Usado em: `CoffeeCard` (catálogo) e `Checkout` (carrinho)
-
-### `<CoffeeCard />`
-- Exibe informações do café e integra `QuantityControl`
-- Chama `addToCart` do `CartContext` ao clicar no botão
-
-### `<Header />`
-- Lê `cartCount` do `CartContext`
-- Lê e alterna `theme` do `ThemeContext`
-
----
-
-## 6. Validação de Formulário
+## 6. Validação de Formulário com Zod
 
 ```typescript
 const checkoutSchema = z.object({
-  cep:          z.string().min(8),
-  street:       z.string().min(3),
-  number:       z.string().min(1),
+  cep:          z.string().min(8, 'CEP inválido').max(9),
+  street:       z.string().min(3, 'Rua obrigatória'),
+  number:       z.string().min(1, 'Número obrigatório'),
   complement:   z.string().optional(),
-  neighborhood: z.string().min(2),
-  city:         z.string().min(2),
-  state:        z.string().length(2),
+  neighborhood: z.string().min(2, 'Bairro obrigatório'),
+  city:         z.string().min(2, 'Cidade obrigatória'),
+  state:        z.string().length(2, 'UF inválida'),
   payment:      z.enum(['credit', 'debit', 'cash']),
 })
 ```
 
-O resolver Zod é passado ao `useForm`, que fornece `register`, `handleSubmit` e `formState.errors`.
-
 ---
 
-## 7. Temas com CSS Variables
+## 7. Estratégia de Testes
 
-As variáveis CSS são definidas em `:root` (tema claro) e sobrescritas em `[data-theme="dark"]`.  
-O `ThemeProvider` aplica o atributo no elemento `<html>`:
-
-```typescript
-document.documentElement.setAttribute('data-theme', theme)
-```
-
----
-
-## 8. Estratégia de Testes
-
-| Tipo | Ferramenta | Cobertura alvo |
-|------|------------|----------------|
-| Testes manuais | Navegador | Fluxo completo end-to-end |
-| Validação de tipos | TypeScript strict | 100% do código-fonte |
-| Validação de formulário | Zod + RHF | Todos os campos do checkout |
-| Verificação de responsividade | DevTools + breakpoints | 320px, 768px, 1024px, 1440px |
-| Dark Mode | Atributo data-theme | Todos os componentes |
+| Camada | Ferramenta | Escopo de Teste |
+|--------|------------|-----------------|
+| Tipagem Estática | TypeScript `tsc --noEmit` | Validação estrita de contratos e props |
+| Compilação e Bundling | Vite Build | Resolução de módulos e minificação de CSS/JS |
+| Formulários e Schemas | Zod + React Hook Form | Validação de formatos e mensagens de erro |
+| Responsividade | Viewports 390px, 768px, 1440px | Verificação de grids flexíveis e quebras de linha |
+| Persistência | LocalStorage API | Hidratação e restauração de dados entre sessões |
+| Captura de Evidências | Chrome Headless | Geração de screenshots comparativos de todos os temas |
